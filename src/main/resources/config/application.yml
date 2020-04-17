@@ -1,0 +1,82 @@
+swagger:
+  default-include-pattern: /api/.*
+  title: imgurGallery API
+  description: imgurGallery API documentation
+  version: 0.0.1
+  terms-of-service-url:
+  contact-name:
+  contact-url:
+  contact-email:
+  license:
+  license-url:
+spring:
+  application:
+    name: imgurGallery
+  mvc:
+    favicon:
+      enabled: false
+  security:
+    user:
+      name: admin
+      password: admin
+      roles:
+        - ADMIN
+        - USER
+  task:
+    execution:
+      thread-name-prefix: imgurGallery-task-
+      pool:
+        core-size: 2
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: imgurGallery-scheduling-
+      pool:
+        size: 2
+  thymeleaf:
+    mode: HTML
+  output:
+    ansi:
+      console-available: true
+  profiles:
+    include:
+      - swagger
+  devtools:
+    restart:
+      enabled: true
+      additional-exclude: static/**
+    livereload:
+      enabled: false # we use Webpack dev server + BrowserSync for livereload
+  jackson:
+    serialization:
+      indent-output: true
+    thymeleaf:
+      cache: false
+  h2:
+    console:
+      enabled: true
+  jpa:
+      #    database-platform: com.rps.domain.util.FixedH2Dialect
+      database: H2
+      show-sql: true
+    #    properties:
+    #      hibernate.id.new_generator_mappings: true
+    #      hibernate.connection.provider_disables_autocommit: true
+    #      hibernate.cache.use_second_level_cache: false
+    #      hibernate.cache.use_query_cache: false
+    #      hibernate.generate_statistics: false
+  liquibase:
+      change-log: classpath:config/liquibase-changelog.xml
+jwt:
+  secret: OTI2OWU5MzhlMjdmYTE3NDllM2Q0OGUwNDUzZDcyYTY0NmNlMGQwODUxNmViNDYyYTQ4YTYwZjliZWVlYmM5MmE4MWI1OWVkYmY3OTU2YzlhYTFhNjNkODQ4OTNmOGMzNzAyY2MyMmU5YzViM2U1NDFlNjgzZGQyY2U4OWM2ZjM=
+
+
+
+logging:
+  level:
+    ROOT: DEBUG
+    com.mobi.lab: DEBUG
+
+
+server:
+  port: 8080
