@@ -10,18 +10,8 @@
     <comment>Inserting Users</comment>
     <insert tableName="users">
       <column name="id" valueNumeric="1"/>
-      <column name="username" value="mehdi"/>
-      <column name="password" value="$2a$10$8yyNUAUb1QyMzyOmKNa0tOBXM.jhPXlm/ULI2sJqTofHyFw.PVxGa"/>
-    </insert>
-    <insert tableName="users">
-      <column name="id" valueNumeric="2"/>
-      <column name="username" value="david"/>
-      <column name="password" value="$2a$10$8yyNUAUb1QyMzyOmKNa0tOBXM.jhPXlm/ULI2sJqTofHyFw.PVxGa"/>
-    </insert>
-    <insert tableName="users">
-      <column name="id" valueNumeric="3"/>
-      <column name="username" value="michael"/>
-      <column name="password" value="$2a$10$8yyNUAUb1QyMzyOmKNa0tOBXM.jhPXlm/ULI2sJqTofHyFw.PVxGa"/>
+      <column name="username" value="demo"/>
+      <column name="password" value="$2a$10$i9PlqAsgq7ht6So3R0iqRuQjFGSjY37oHEhRfW17g00sjRJpnpC4q"/>
     </insert>
   </changeSet>
 </databaseChangeLog>

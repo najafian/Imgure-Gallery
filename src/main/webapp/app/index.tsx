@@ -5,8 +5,11 @@ import {Route, Switch, BrowserRouter as Router} from 'react-router-dom';
 import initStore from './config/store';
 import {registerLocale} from './config/translation';
 import {loadIcons} from './config/icon-loader';
+import LoginPage from "app/component/authentication/login/login-page";
+import ContainerPage from "app/component/imgur-gallery/container/container-page";
 import PageNotFound from "app/component/errors/page-not-found";
-
+import  'bootstrap/dist/css/bootstrap.min.css';
+import '@syncfusion/ej2/material.css';
 import '../contents/styles/index.css';
 
 const store = initStore();
@@ -27,7 +30,9 @@ ReactDOM.render(
         <div className="center-form-class">
           <Router basename={baseHref}>
             <Switch>
-              <Route exact component={PageNotFound} path="*"/>
+              <Route path="/gallery" component={ContainerPage}/>
+              <Route exact component={LoginPage} path="/"/>
+              <Route component={PageNotFound} path="*"/>
             </Switch>
           </Router>
         </div>

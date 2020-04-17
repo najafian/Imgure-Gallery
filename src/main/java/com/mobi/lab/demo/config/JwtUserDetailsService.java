@@ -15,12 +15,11 @@ import java.util.Optional;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
-
     @Autowired
     private UsersRepository userDao;
-
     @Autowired
     private PasswordEncoder bcryptEncoder;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

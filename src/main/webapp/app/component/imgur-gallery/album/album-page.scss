@@ -1,0 +1,48 @@
+.album {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+//
+//@media (max-width: 700px) {
+//  .container {
+//    grid-template-areas: "content content content" "sidebar-1 sidebar-1 sidebar-2";
+//
+//  }
+//}
+
+.album-container {
+  display: grid;
+  grid-gap: 20px;
+  //grid-template-columns: 12fr;
+}
+
+.image-top {
+  @extend .album-container;
+  grid-template-areas: "imageThumbnail" "descriptionPart";
+  //grid-template-rows: 100%;
+}
+
+.image-bottom {
+  @extend .album-container;
+  grid-template-areas: "descriptionPart" "imageThumbnail";
+  //grid-template-rows: 100%;
+}
+
+.imageThumbnailClass {
+  grid-area: imageThumbnail;
+}
+
+.descriptionPartClass {
+  grid-area: descriptionPart;
+}
+
+.album-section {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid rgba(0, 0, 0, 0.03);
+  border-radius: 3px;
+  font-size: 35px;
+  background-color: var(--yellow);
+}

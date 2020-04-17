@@ -45,7 +45,7 @@ public class JwtAuthenticationController {
      *         and return JWT Token for authenticating
      * @Author Mehdi Najafian
      */
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<?> authenticate(@RequestBody UsersDto userDto) {
         Users user = userDetailsService.save(userDto);
         UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
