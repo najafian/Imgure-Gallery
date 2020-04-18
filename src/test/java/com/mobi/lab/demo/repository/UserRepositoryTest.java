@@ -1,7 +1,6 @@
 package com.mobi.lab.demo.repository;
 
 import com.mobi.lab.demo.model.user.Users;
-import com.mobi.lab.demo.repository.UsersRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,12 +3,10 @@ import {FAILURE, REQUEST, SUCCESS} from "app/shared/utils/action-type.util";
 import {cleanEntity, IPayloadRepository} from "app/shared/type/dataTypes-utils";
 import {ActionUri} from "app/shared/utils/action-uri";
 
-/*
-* TabID is DONE!
-* */
+
 export const ACTION_TYPES = {
-  TERMINAL_LIST: ':Techno/TERMINAL_LIST',
-  RESET: ':Techno/RESET'
+  GALLERY_LIST: ':IMGUR/GALLERY_LIST',
+  RESET: ':IMGUR/RESET'
 };
 
 export const initialState = {
@@ -17,24 +15,24 @@ export const initialState = {
   galleryList: null as any,
 };
 
-export type TerminalReduxState = Readonly<typeof initialState>;
+export type GalleryReduxState = Readonly<typeof initialState>;
 
 // Reducer
-export default (state: TerminalReduxState = initialState, action): TerminalReduxState => {
+export default (state: GalleryReduxState = initialState, action): GalleryReduxState => {
   switch (action.type) {
-    case REQUEST(ACTION_TYPES.TERMINAL_LIST):
+    case REQUEST(ACTION_TYPES.GALLERY_LIST):
       return {
         ...state,
         errorMessage: null,
         loading: true
       };
-    case FAILURE(ACTION_TYPES.TERMINAL_LIST):
+    case FAILURE(ACTION_TYPES.GALLERY_LIST):
       return {
         ...state,
         loading: false,
         errorMessage: action.payload
       };
-    case SUCCESS(ACTION_TYPES.TERMINAL_LIST):
+    case SUCCESS(ACTION_TYPES.GALLERY_LIST):
       return {
         ...state,
         loading: false,
@@ -49,7 +47,7 @@ export default (state: TerminalReduxState = initialState, action): TerminalRedux
   }
 };
 
-export const getImgurGallery: IPayloadRepository<any> = entity => ({
-  type: ACTION_TYPES.TERMINAL_LIST,
-  payload: axios.get(ActionUri.gallery , cleanEntity(entity))
+export const getImgurGallery: IPayloadRepository<any> = queryParams => ({
+  type: ACTION_TYPES.GALLERY_LIST,
+  payload: axios.get(ActionUri.gallery + queryParams)
 });

@@ -8,6 +8,7 @@ import {IRootState} from "app/shared/reducer";
 import {login} from "app/component/authentication/react-redux/authentication-action";
 import AlbumPanel, {IAlbumDetail} from "app/component/imgur-gallery/album/album-panel";
 import {HeaderFilterAlbum} from "app/component/imgur-gallery/filter-album/header-filter-album";
+import {getImgurGallery} from "app/component/imgur-gallery/react-redux/imgur-action";
 
 interface IProps extends StateProps, DispatchProps, RouteComponentProps<{}> {
 
@@ -27,6 +28,9 @@ class ContainerPage extends React.Component<IProps> {
       key: 'dffd'
     }
   }
+componentDidMount(): void {
+    this.props.getImgurGallery('hot/viral/1/all?showViral=true&mature=true&album_previews=true');
+}
 
   render(): React.ReactElement | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
     if (!this.props.authentication.isAuthenticated) {
@@ -38,20 +42,20 @@ class ContainerPage extends React.Component<IProps> {
           <HeaderFilterAlbum albumDetail={this.filterInfo}/>
         </div>
         <div className="gallery-body">
-        <div className="gallery">
+          <div className="gallery">
             <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
             <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
             <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
-          <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
-          <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
-          <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
-          <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
-          <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
-          <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
-          <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
-          <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
-          <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
-        </div>
+            <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
+            <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
+            <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
+            <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
+            <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
+            <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
+            <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
+            <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
+            <AlbumPanel delayTime={500} albumDetail={this.imageDetail}></AlbumPanel>
+          </div>
         </div>
       </div>
     );
@@ -59,12 +63,15 @@ class ContainerPage extends React.Component<IProps> {
 }
 
 
-const mapStateToProps = ({authentication, mainOperations}: IRootState) => ({
+const mapStateToProps = ({galleryReduxState, authentication, mainOperations}: IRootState) => ({
   authentication,
-  mainOperations
+  mainOperations,
+  galleryReduxState
 });
 
-const mapDispatchToProps = {login};
+const mapDispatchToProps = {
+  getImgurGallery
+};
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;

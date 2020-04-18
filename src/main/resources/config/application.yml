@@ -88,3 +88,6 @@ logging:
 
 server:
   port: 8080
+
+imgur:
+  clientID: f7d6e6baa4ef867

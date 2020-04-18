@@ -1,8 +1,8 @@
 package com.mobi.lab.demo.config;
 
-import com.mobi.lab.demo.model.user.Users;
 import com.mobi.lab.demo.model.user.UsersDto;
 import com.mobi.lab.demo.repository.UsersRepository;
+import com.mobi.lab.demo.model.user.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
