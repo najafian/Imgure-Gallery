@@ -6,8 +6,7 @@ export interface IPayload<T> {
     payload: AxiosPromise<T>;
     meta?: any;
 }
-export type IPayloadRepository<T> = (entity?: any) => IPayload<T> | ((dispatch: any) => IPayload<T>);
-export type IPayloadContributor<T> = (url?: string, repositoryID?: string) => IPayload<T> | ((dispatch: any) => IPayload<T>);
+export type IGetResultValues<T> = (data?: any, tabID?: string, page?: number, size?: number, sort?: string) => IPayload<T> | ((dispatch: any) => IPayload<T>);
 
 /**
  * Removes fields with an 'id' field that equals ''.

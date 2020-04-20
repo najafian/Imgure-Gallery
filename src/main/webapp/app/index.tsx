@@ -8,9 +8,10 @@ import {loadIcons} from './config/icon-loader';
 import LoginPage from "app/component/authentication/login/login-page";
 import ContainerPage from "app/component/imgur-gallery/container/container-page";
 import PageNotFound from "app/component/errors/page-not-found";
-import  'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '@syncfusion/ej2/material.css';
 import '../contents/styles/index.css';
+import {CustomWidgetDropDownElement} from "app/shared/widgets/dropDownBox/CustomWidgetDropDownElement";
 
 const store = initStore();
 registerLocale(store);
@@ -22,6 +23,7 @@ const baseHref = document
   .querySelector('base')
   .getAttribute('href')
   .replace(/\/$/, '');
+
 
 ReactDOM.render(
   <Provider store={store}>

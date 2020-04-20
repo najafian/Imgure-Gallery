@@ -3,17 +3,10 @@
     "title": "Giriş",
     "form": {
       "password": "Şifre",
-      "password.placeholder": "Şifre",
+      "username": "Kullanıcı adı",
       "rememberme": "Beni Hatırla",
-      "button": "Giriş"
-    },
-    "messages": {
-      "error": {
-        "authentication": "<strong>Giriş işlemi başarısız oldu!</strong> Lütfen kullanıcı bilgilerinizi kontrol edip tekrar deneyin."
-      }
-    },
-    "password": {
-      "forgot": "Şifreni mi unuttun?"
+      "button": "Giriş",
+      "welcome": "İmgur Galerimize Hoşgeldiniz!"
     }
   }
 }

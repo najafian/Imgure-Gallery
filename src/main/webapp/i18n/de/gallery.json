@@ -1,0 +1,13 @@
+{
+  "gallery": {
+    "filter": {
+      "section": "der Abschnitt",
+      "page": "die Seite",
+      "window": "die Auslage",
+      "sort": "Sortieren",
+      "showViral": "Show Viral",
+      "mature": "reifen",
+      "search": "Suche auf Imgur.com"
+    }
+  }
+}

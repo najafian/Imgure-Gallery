@@ -238,8 +238,8 @@
     </dependencies>
 
     <build>
-<!--        <sourceDirectory>src/main/kotlin</sourceDirectory>-->
-<!--        <testSourceDirectory>src/test/kotlin</testSourceDirectory>-->
+        <!--        <sourceDirectory>src/main/kotlin</sourceDirectory>-->
+        <!--        <testSourceDirectory>src/test/kotlin</testSourceDirectory>-->
         <defaultGoal>spring-boot:run</defaultGoal>
         <testResources>
             <testResource>
@@ -298,10 +298,10 @@
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.codehaus.mojo</groupId>-->
-<!--                <artifactId>properties-maven-plugin</artifactId>-->
-<!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                <groupId>org.codehaus.mojo</groupId>-->
+            <!--                <artifactId>properties-maven-plugin</artifactId>-->
+            <!--            </plugin>-->
             <plugin>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -369,8 +369,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <source>13</source>
-                    <target>13</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
         </plugins>

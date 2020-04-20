@@ -1,6 +1,6 @@
 import {Toast, ToastModel} from '@syncfusion/ej2-notifications';
 
-import {CheckUserPermissionOnControl} from "../../../shared/utils/permission";
+import {CheckUserPermissionOnControl} from 'app/shared/utils/permission';
 import {IWidgetCommon} from "../common/common";
 
 export class CustomWidgetToast implements IWidgetCommon<Toast> {
@@ -8,8 +8,7 @@ export class CustomWidgetToast implements IWidgetCommon<Toast> {
     permissionID = true;
 
     applyPermission(elementPermissionID: string, userPermissions: string[]): void {
-        const isAuthenticated: boolean = CheckUserPermissionOnControl(elementPermissionID, userPermissions);
-        this.permissionID = isAuthenticated;
+      this.permissionID = CheckUserPermissionOnControl(elementPermissionID, userPermissions);
     }
 
     constructor() {

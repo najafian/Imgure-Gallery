@@ -1,5 +1,7 @@
 package com.mobi.lab.demo.model
 
+import com.google.common.collect.ImmutableMap
+
 
 data class GalleryParameters(var sectionPathVar: String? = null,
                              var sortPathVar: String? = null,
@@ -8,8 +10,16 @@ data class GalleryParameters(var sectionPathVar: String? = null,
                              var showViralParam: Boolean? = null,
                              var showMatureParam: Boolean? = null,
                              var albumPreviewsParam: Boolean? = null
-){
-    constructor(builder: Builder) : this(builder.sectionPathVar, builder.sortPathVar, builder.windowPathVar, builder.pagePathVar, builder.showViralParam)
+) {
+    constructor(builder: Builder) : this(builder.sectionPathVar, builder.sortPathVar, builder.windowPathVar, builder.pagePathVar, builder.showViralParam, builder.showMatureParam, builder.albumPreviewsParam)
+
+    fun getQueryParameters():HashMap<String,Any> {
+        return  hashMapOf("showViralParam" to this.showViralParam.toString(),"showMatureParam" to showMatureParam.toString(),"albumPreviewsParam" to albumPreviewsParam.toString())
+    }
+
+    fun getPathVariables(): Array<String?> {
+        return arrayOf(sectionPathVar, sortPathVar, windowPathVar, pagePathVar.toString());
+    }
 
     class Builder {
         var sortPathVar: String? = null

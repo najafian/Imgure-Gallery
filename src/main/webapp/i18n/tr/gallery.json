@@ -1,0 +1,13 @@
+{
+  "gallery": {
+    "filter": {
+      "section": "Bölüm",
+      "page": "sayfa",
+      "window": "pencere",
+      "sort": "çeşit",
+      "showViral": "Show Viral",
+      "mature": "mature",
+      "search": "aramak Imgur.com"
+    }
+  }
+}

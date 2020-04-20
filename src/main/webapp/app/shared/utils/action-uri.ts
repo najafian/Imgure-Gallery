@@ -1,6 +1,6 @@
 export enum ActionUri {
-  // gallery = 'https://api.imgur.com/3/gallery/{{section}}/{{sort}}/{{window}}/{{page}}?showViral={{showViral}}&mature={{showMature}}&album_previews={{albumPreviews}}',
-  gallery = 'https://api.imgur.com/3/gallery/1/{{sort}}/1/1.json?showViral=true&mature=true&album_previews=true',
+  // gallery = '/api/imgur-gallery/{{section}}/{{sort}}/{{window}}/{{page}}?showViral={{showViral}}&mature={{showMature}}&album_previews={{albumPreviews}}',
+  gallery = '/api/imgur-gallery/',
   auth = '/auth',
   account = '/api/account'
 }

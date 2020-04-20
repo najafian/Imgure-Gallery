@@ -1,0 +1,13 @@
+{
+  "gallery": {
+    "filter": {
+      "section": "section",
+      "page": "page",
+      "window": "window",
+      "sort": "Sort",
+      "showViral": "Show Viral",
+      "mature": "mature",
+      "search": "search on Imgur.com"
+    }
+  }
+}

@@ -1,5 +1,5 @@
 .album {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(2, 1, 2, 0.2);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -45,4 +45,11 @@
   border-radius: 3px;
   font-size: 35px;
   background-color: var(--yellow);
+}
+
+img {
+  display: block !important;
+  max-width:185px !important;
+  width: auto !important;
+  height: auto !important;
 }

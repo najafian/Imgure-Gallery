@@ -14,7 +14,7 @@ export class CustomListBox implements IWidgetCommon<ListBox> {
     const isAuthenticated: boolean = CheckUserPermissionOnControl(elementPermissionID, userPermissions);
     this.permissionID = isAuthenticated;
   }
-  constructor(element?: string | HTMLElement) {
+  constructor(element?: any) {
     this.listBox = new ListBox();
     this.createWidget(element);
   }

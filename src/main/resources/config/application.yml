@@ -15,13 +15,6 @@ spring:
   mvc:
     favicon:
       enabled: false
-  security:
-    user:
-      name: admin
-      password: admin
-      roles:
-        - ADMIN
-        - USER
   task:
     execution:
       thread-name-prefix: imgurGallery-task-

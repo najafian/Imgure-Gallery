@@ -1,16 +1,19 @@
 .gallery-container {
   background-size: 340px, auto;
-  height: calc(100vh - 100px);
+  height: fit-content;
   margin: 30px;
   background-attachment: fixed;
   letter-spacing: -1px;
   background-image: url(topography.svg), linear-gradient(110deg, #f93d66, #6d47d9);
 }
 
+.gallery-container {
+  height: -moz-fit-content;
+}
+
 .gallery-header {
-  height: 70px;
+  min-height: 70px;
   background: rgba(2, 2, 2, 0.2);
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -35,19 +38,6 @@
   box-sizing: border-box;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0 0 5px 0;
-}
-
-p {
-  margin: 0 0 20px 0;
-}
-
 .close {
   background: none;
   color: black;
@@ -56,15 +46,25 @@ p {
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 100px);
-  grid-auto-rows: 100px;
+  grid-template-columns: repeat(auto-fill, 90px);
+  grid-auto-rows: 40px;
+  grid-auto-flow: dense;
+  grid-gap: 5px;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-filter-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 95px);
+  grid-auto-rows: 85px;
   grid-auto-flow: dense;
   grid-gap: 10px;
   justify-content: center;
   width: 100%;
   height: 100%;
 }
-
 
 .item {
   overflow: hidden;
@@ -120,6 +120,14 @@ p {
 
 .item.v4 {
   grid-row: span 4;
+}
+
+.item.v5 {
+  grid-row: span 5;
+}
+
+.item.v6 {
+  grid-row: span 6;
 }
 
 .item.h2 {

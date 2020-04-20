@@ -1,13 +1,14 @@
 import axios from 'axios';
 import {TranslatorContext, Storage, translate} from 'react-jhipster';
+import {ILanguage} from "app/shared/utils/i-language";
 
+export const formLanguage: ILanguage[] = [];
 export const ACTION_TYPES = {
   SET_LOCALE: 'locale/SET_LOCALE'
 };
 
 const initialState = {
   currentLocale: undefined,
-  isRtl: undefined
 };
 
 export type LocaleState = Readonly<typeof initialState>;
@@ -17,9 +18,9 @@ export default (state: LocaleState = initialState, action): LocaleState => {
     const currentLocale = action.locale;
     if (state.currentLocale !== currentLocale) {
       TranslatorContext.setLocale(currentLocale);
+      formLanguage.forEach(it => it.setLanguage())
     }
     return {
-      isRtl: translate('style.isRtl') === 'true',
       currentLocale
     };
   } else {

@@ -13,7 +13,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.constraints.NotNull;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class RestService extends RestTemplate {
@@ -30,10 +33,12 @@ public class RestService extends RestTemplate {
         return forEntity;
     }
 
-    public <T> T getActionWithParameters(String url, Class<T> clazz, Map<String, Object> params) {
+    public <T> T getActionWithParameters(String url, Class<T> clazz, Map<String, Object> queryParams, HashMap<String, String> headerMap, String[] pathVariables) {
         HttpHeaders headers = getHttpHeaders();
+        headerMap.entrySet().stream().forEach(it -> headers.set(it.getKey(), it.getValue()));
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
-        params.entrySet().stream().forEachOrdered(o -> builder.queryParam(o.getKey(), o.getValue()));
+        queryParams.entrySet().stream().filter(f -> f.getValue() != null).forEachOrdered(o -> builder.queryParam(o.getKey(), o.getValue()));
+        builder.pathSegment(pathVariables);
         HttpEntity<?> entity = new HttpEntity<>(headers);
         try {
             URI uri = new URI(builder.toUriString());
@@ -48,6 +53,8 @@ public class RestService extends RestTemplate {
             return null;
         }
     }
+
+
 
     public <T> T postActionWithParameters(String url, Class<T> clazz, Map<String, Object> body, Map<String, Object> headerParams) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
