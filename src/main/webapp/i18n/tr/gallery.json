@@ -6,8 +6,14 @@
       "window": "pencere",
       "sort": "çeşit",
       "showViral": "Show Viral",
+      "descriptionPosition": "görüntü açıklamasını altta göster",
       "mature": "mature",
-      "search": "aramak Imgur.com"
+      "search": "aramak Imgur.com",
+      "succeed": "Spring-Boot'dan doğru bir şekilde getirilen albümler!"
     }
+  },
+  "album": {
+    "view": "pencere göster",
+    "description": "Açıklama :"
   }
 }

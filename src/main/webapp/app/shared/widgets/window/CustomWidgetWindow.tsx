@@ -1,7 +1,7 @@
 import {Dialog, AnimationSettingsModel, BeforeCloseEventArgs} from '@syncfusion/ej2-popups';
 import {EmitType} from '@syncfusion/ej2-base';
-import {CheckUserPermissionOnControl} from "../../utils/permission";
-import {IWidgetCommon} from "../common/common";
+import {CheckUserPermissionOnControl} from '../../utils/permission';
+import {IWidgetCommon} from '../common/common';
 
 export class CustomWidgetWindow implements IWidgetCommon<Dialog> {
 

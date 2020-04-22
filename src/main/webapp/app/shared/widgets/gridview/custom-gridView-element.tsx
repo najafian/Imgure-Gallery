@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
-import {CustomGridView} from "./CustomGridView";
-import {CustomWidgetCommon} from "../common/common";
-import UniqueID from "../../utils/uniqueKey";
+import {CustomGridView} from './CustomGridView';
+import {CustomWidgetCommon} from '../common/common';
+import UniqueID from '../../utils/uniqueKey';
 
 export class CustomGridViewElement extends CustomWidgetCommon<CustomGridView> {
   gridview: CustomGridView;

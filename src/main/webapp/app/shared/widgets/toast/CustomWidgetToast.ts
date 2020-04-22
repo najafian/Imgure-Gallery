@@ -1,7 +1,7 @@
 import {Toast, ToastModel} from '@syncfusion/ej2-notifications';
 
 import {CheckUserPermissionOnControl} from 'app/shared/utils/permission';
-import {IWidgetCommon} from "../common/common";
+import {IWidgetCommon} from '../common/common';
 
 export class CustomWidgetToast implements IWidgetCommon<Toast> {
     toast: Toast;

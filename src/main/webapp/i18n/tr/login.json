@@ -5,8 +5,8 @@
       "password": "Şifre",
       "username": "Kullanıcı adı",
       "rememberme": "Beni Hatırla",
-      "button": "Giriş",
-      "welcome": "İmgur Galerimize Hoşgeldiniz!"
-    }
+      "button": "Giriş"
+    },
+    "welcome": "İmgur Galerimize Hoşgeldiniz!"
   }
 }

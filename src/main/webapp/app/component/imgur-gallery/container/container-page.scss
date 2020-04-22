@@ -6,6 +6,13 @@
   letter-spacing: -1px;
   background-image: url(topography.svg), linear-gradient(110deg, #f93d66, #6d47d9);
 }
+.album {
+  background: rgba(2, 1, 2, 0.2);
+  border: 1px solid;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin: 0 !important;
+  @extend .item;
+}
 
 .gallery-container {
   height: -moz-fit-content;
@@ -58,9 +65,9 @@
 .gallery-filter-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, 95px);
-  grid-auto-rows: 85px;
+  grid-auto-rows: 30px;
   grid-auto-flow: dense;
-  grid-gap: 10px;
+  grid-gap: 4px 10px;
   justify-content: center;
   width: 100%;
   height: 100%;
@@ -132,6 +139,7 @@
 
 .item.h2 {
   grid-column: span 2;
+  font-size: 25px;
 }
 
 .item.h3 {

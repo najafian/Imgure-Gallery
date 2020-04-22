@@ -1,26 +1,34 @@
 import React from 'react';
-import {LazyLoadImage, trackWindowScroll}
-  from 'react-lazy-load-image-component';
 import './album-page.scss';
-import {ILanguage} from "app/shared/utils/i-language";
-import UniqueID from "app/shared/utils/uniqueKey";
+import {ILanguage} from 'app/shared/utils/i-language';
+import UniqueID from 'app/shared/utils/uniqueKey';
+import {IWidgetOps} from 'app/shared/widgets/common/common';
+import {CustomWidgetButton} from 'app/shared/widgets/button/CustomWidgetButton';
+import {CustomWidgetButtonElement} from 'app/shared/widgets/button/CustomWidgetButtonElement';
+import {translate} from 'react-jhipster';
+import AlbumViewWindow, {IAlbumView} from 'app/component/imgur-gallery/album/view/album-view-window';
+
 
 export interface IAlbumDetail {
   imageWidth: number;
   imageHeight: number;
   info: { upVotes: number, downVotes: number, score: number, title: string, description: string };
-  src: string;
+  linkUri: string;
   key: string;
+  type: string;
 }
 
 interface IProps {
   albumDetail: IAlbumDetail
 }
 
-class AlbumPanel extends React.Component<IProps, {}> implements ILanguage {
-  beforeLoad: Function;
-  afterLoad: Function;
+export class AlbumPanel extends React.Component<IProps, {}> implements ILanguage {
+  readonly beforeLoad: Function;
+  readonly afterLoad: Function;
+  readonly viewElementID: string = UniqueID();
   private imageContainerID: string = UniqueID();
+  private iButtonView: IWidgetOps<CustomWidgetButton> = {};
+  private viewWindow: { show?(data: IAlbumView) } = {};
 
   constructor(props) {
     super(props);
@@ -33,28 +41,17 @@ class AlbumPanel extends React.Component<IProps, {}> implements ILanguage {
   }
 
   componentDidMount(): void {
-    // this.loadImage(this.props.albumDetail.src)
-    //   .then((img: any) => document.getElementById(this.imageContainerID).appendChild(img))
-    //   .catch(error => console.error(error));
-  }
-
-  loadImage(url) {
-    return new Promise((resolve, reject) => {
-      let img = new Image();
-      img.addEventListener('load', e => resolve(img));
-      img.addEventListener('error', () => {
-        reject(new Error(`Failed to load image's URL: ${url}`));
+    this.iButtonView.getWidget().setLabel(translate('gallery.album.view'));
+    this.iButtonView.getWidget().onClick(() => {
+      this.viewWindow.show({
+        element: document.getElementById(this.viewElementID).cloneNode(true) as HTMLElement,
+        details: this.props.albumDetail
       });
-      img.src = url;
     });
   }
 
-  render(): React.ReactElement | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
-    const image = this.props.albumDetail;
-    const customWidth = 180;
-    const height = customWidth * image.imageHeight / image.imageWidth;
-    let classStyle = 'album item h2 ';
-    const fixHeightBox = 45;
+  private makeWaterfall(height: number, fixHeightBox: number, classStyle: string) {
+    height += 50;
     const checkHeight = (multiPly) => (height > fixHeightBox * multiPly && height < fixHeightBox * (multiPly + 1));
     if (height < fixHeightBox) {
       classStyle += 'v1';
@@ -69,28 +66,43 @@ class AlbumPanel extends React.Component<IProps, {}> implements ILanguage {
     } else {
       classStyle += 'v6';
     }
+    return classStyle;
+  }
+
+  render(): React.ReactElement | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+    const image = this.props.albumDetail;
+    const customWidth = 180;
+    const height = customWidth * image.imageHeight / image.imageWidth;
+    const fixHeightBox = 45;
+    const album = () => {
+      if (image.type === 'video/mp4') {
+        return <video id={this.viewElementID} width={customWidth} height={height} controls>
+          <source src={image.linkUri} type="video/mp4"/>
+          Your browser does not support the video tag.
+        </video>;
+      } else {
+        return <img id={this.viewElementID} alt={image.type} height={height} src={image.linkUri}
+                    width={customWidth}/>;
+      }
+    };
+    const classStyle = this.makeWaterfall(height, fixHeightBox, 'album item h2 ');
     return (
       <div className={classStyle}>
-        <div className="image-top">
-          <div className="album-section imageThumbnailClass" id={this.imageContainerID}>z
-            <LazyLoadImage key={image.key}
-                           alt={image.src}
-                           height={height}
-              // scrollPosition={'y'}
-                           src={image.src}
-                           width={customWidth}
-              // beforeLoad={this.beforeLoad}
-              // afterLoad={this.afterLoad}
-            />
+        <div className="image-bottom album-container-div">
+          <div className="album-section descriptionPartClass">{image.info.title}</div>
+          <div className="album-section imageThumbnailClass" id={this.imageContainerID}>
+            {album()}
+            <CustomWidgetButtonElement widgetProp={this.iButtonView}/>
           </div>
-          <div className="album-section descriptionPartClass">description</div>
         </div>
+        <AlbumViewWindow rootElementID="root" widget={this.viewWindow}/>
       </div>
     );
   }
+
 
   setLanguage(): void {
   }
 }
 
-export default trackWindowScroll(AlbumPanel);
+

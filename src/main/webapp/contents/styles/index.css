@@ -70,3 +70,37 @@ input {
   font-size: 14px;
   height: 25px;
 }
+
+.app-loading {
+  margin: 0 auto;
+  width: 210px;
+}
+
+.app-loading .loading-spinner {
+  background-image: url(../images/loading-bar.gif);
+  background-size: contain;
+  width: 128px;
+  height: 20px;
+  -webkit-animation: lds-pacman-3 1s linear infinite;
+  animation: lds-pacman-3 1.5s linear infinite;
+  animation-direction: reverse;
+  margin: 0 auto;
+}
+
+.app-loading .mobilab-icon {
+  background-image: url(../images/logo-mobilab-white-bg.png);
+  background-size: contain;
+  width: 215px;
+  height: 75px;
+}
+
+.loading-show-bar {
+  width: 100%;
+  height: 100%;
+  opacity: .5;
+  background-color: #8d9696;
+  z-index: 1;
+  position: absolute;
+  top: 0px;
+  display: table;
+}

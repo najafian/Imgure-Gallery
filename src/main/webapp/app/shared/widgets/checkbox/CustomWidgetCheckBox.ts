@@ -1,11 +1,11 @@
 import {IWidgetCommon} from "../common/common";
-import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
-import { EmitType } from '@syncfusion/ej2-base';
+import {CheckBox, ChangeEventArgs} from '@syncfusion/ej2-buttons';
+import {EmitType} from '@syncfusion/ej2-base';
 import {CheckUserPermissionOnControl} from 'app/shared/utils/permission';
 
 export class CustomWidgetCheckBox implements IWidgetCommon<CheckBox> {
   checkBox: CheckBox;
-  permissionID=true;
+  permissionID = true;
 
   applyPermission(elementPermissionID: string, userPermissions: string[]): void {
     const isAuthenticated: boolean = CheckUserPermissionOnControl(elementPermissionID, userPermissions);
@@ -14,12 +14,16 @@ export class CustomWidgetCheckBox implements IWidgetCommon<CheckBox> {
     }
     this.permissionID = isAuthenticated;
   }
+
   constructor(element?: string | HTMLElement, isRtl?: boolean) {
     this.checkBox = new CheckBox();
     this.createWidget(element);
     this.setWidgetDirection(isRtl);
   }
 
+  setVisibility(disable: boolean) {
+    this.checkBox.element.style.display = disable?'block':'none';
+  }
   setDisability(disable: boolean) {
     this.checkBox.disabled = disable;
   }
@@ -36,6 +40,7 @@ export class CustomWidgetCheckBox implements IWidgetCommon<CheckBox> {
   }
 
   setWidth(width: number) {
+
   }
 
   destroy(): void {
@@ -44,6 +49,10 @@ export class CustomWidgetCheckBox implements IWidgetCommon<CheckBox> {
 
   getWidget() {
     return this.checkBox;
+  }
+
+  setChange(change: EmitType<ChangeEventArgs>) {
+    this.checkBox.change = change;
   }
 
   ischecked() {

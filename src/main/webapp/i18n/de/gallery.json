@@ -6,8 +6,15 @@
       "window": "die Auslage",
       "sort": "Sortieren",
       "showViral": "Show Viral",
+      "descriptionPosition": "Bildbeschreibung unten anzeigen",
       "mature": "reifen",
-      "search": "Suche auf Imgur.com"
+      "search": "Suche auf Imgur.com",
+      "succeed": "Alben aus dem Spring Boot korrekt abgerufen"
+    },
+    "album": {
+      "view": "Schaufenster",
+      "description": "Beschreibung: ",
+      "title": "Titel :"
     }
   }
 }

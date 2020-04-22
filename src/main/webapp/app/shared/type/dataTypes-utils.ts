@@ -1,4 +1,4 @@
-import {AxiosPromise} from "axios";
+import {AxiosPromise} from 'axios';
 import pick from 'lodash/pick';
 
 export interface IPayload<T> {

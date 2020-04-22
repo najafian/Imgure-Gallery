@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {TranslatorContext, Storage, translate} from 'react-jhipster';
-import {ILanguage} from "app/shared/utils/i-language";
+import {ILanguage} from 'app/shared/utils/i-language';
 
 export const formLanguage: ILanguage[] = [];
 export const ACTION_TYPES = {

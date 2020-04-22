@@ -1,4 +1,4 @@
-import {IWidgetCommon} from "../common/common";
+import {IWidgetCommon} from '../common/common';
 import {DropDownList, ChangeEventArgs, FieldSettingsModel} from '@syncfusion/ej2-dropdowns';
 import {EmitType} from '@syncfusion/ej2-base';
 

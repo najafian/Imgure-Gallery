@@ -1,4 +1,4 @@
-import {CustomWidgetToast} from "../widgets/toast/CustomWidgetToast";
+import {CustomWidgetToast} from '../widgets/toast/CustomWidgetToast';
 
 const initialState = {
     toastAction: new CustomWidgetToast()

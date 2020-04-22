@@ -27,7 +27,7 @@ const baseHref = document
 
 ReactDOM.render(
   <Provider store={store}>
-    <div className="fullScreen-page-class">
+    <div className="fullScreen-page-class" id="iScroll">
       <div className="image-background-class">
         <div className="center-form-class">
           <Router basename={baseHref}>

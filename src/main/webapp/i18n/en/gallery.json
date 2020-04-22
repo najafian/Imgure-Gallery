@@ -6,8 +6,15 @@
       "window": "window",
       "sort": "Sort",
       "showViral": "Show Viral",
+      "descriptionPosition": "show image description in bottom",
       "mature": "mature",
-      "search": "search on Imgur.com"
+      "search": "search on Imgur.com",
+      "succeed": "albums fetched from spring boot correctly"
+    },
+    "album": {
+      "view": "show window",
+      "description": "Description: ",
+      "title": "title :"
     }
   }
 }

@@ -1,8 +1,7 @@
 import axios from 'axios';
-import {FAILURE, REQUEST, SUCCESS} from "app/shared/utils/action-type.util";
-import {cleanEntity, IGetResultValues} from "app/shared/type/dataTypes-utils";
-import {ActionUri} from "app/shared/utils/action-uri";
-import {IAlbumDetail} from "app/component/imgur-gallery/album/album-panel";
+import {FAILURE, REQUEST, SUCCESS} from 'app/shared/utils/action-type.util';
+import { IGetResultValues} from 'app/shared/type/dataTypes-utils';
+import {ActionUri} from 'app/shared/utils/action-uri';
 
 
 export const ACTION_TYPES = {

@@ -1,14 +1,13 @@
 import axios from 'axios';
 import {FAILURE, REQUEST, SUCCESS} from 'app/shared/utils/action-type.util';
 import setupAxiosInterceptors from '../../../config/axios-interceptor';
-import {ActionUri} from "app/shared/utils/action-uri";
+import {ActionUri} from 'app/shared/utils/action-uri';
 
 export const ACTION_TYPES = {
     ACCOUNT: 'authentication/ACCOUNT',
     AUTHENTICATE: 'authentication/AUTHENTICATE',
     LOGOUT: 'authentication/LOGOUT',
     CLEAR_AUTH: 'authentication/CLEAR_AUTH'
-
 };
 
 

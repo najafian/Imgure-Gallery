@@ -21,7 +21,7 @@ export class CustomWidgetCheckBoxElement extends CustomWidgetCommon<CustomWidget
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
     return (
       <div style={{ width: this.props.width, height: this.height }} id={this.widgetPanelID}>
-        <input style={{ height: this.height, fontSize: this.fontSize, padding: '0' }} id={this.widgetID}/>
+        <input style={{width: this.props.width, height: this.height, fontSize: this.fontSize, padding: '0' }} id={this.widgetID}/>
       </div>);
   }
 

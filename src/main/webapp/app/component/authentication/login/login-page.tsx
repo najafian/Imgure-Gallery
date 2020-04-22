@@ -12,7 +12,7 @@ import {CustomWidgetButtonElement} from 'app/shared/widgets/button/CustomWidgetB
 import UniqueID from '../../../shared/utils/uniqueKey';
 import {Translate, translate} from 'react-jhipster';
 import {formLanguage, setLocale} from 'app/shared/reducer/locale';
-import {ILanguage} from "app/shared/utils/i-language";
+import {ILanguage} from 'app/shared/utils/i-language';
 
 interface IProps extends StateProps, DispatchProps {
 
@@ -56,7 +56,7 @@ class LoginPage extends React.Component<IProps> implements ILanguage {
   render() {
     if (this.props.authentication.isAuthenticated) {
       this.props.mainOperations.toastAction.showToast(translate('login.welcome'));
-      return <Redirect to='/gallery'/>;
+      return <Redirect to="/gallery"/>;
     }
     return (
       <div className="login-page-form" style={{height: '180px', width: '323px'}}>

@@ -1,7 +1,7 @@
 import React from 'react';
-import {CustomWidgetCommon} from "../common/common";
-import {CustomWidgetPager} from "./CustomWidgetPager";
-import UniqueID from "../../utils/uniqueKey";
+import {CustomWidgetCommon} from '../common/common';
+import {CustomWidgetPager} from './CustomWidgetPager';
+import UniqueID from '../../utils/uniqueKey';
 
 
 export class CustomWidgetPagerElement extends CustomWidgetCommon<CustomWidgetPager> {

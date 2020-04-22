@@ -1,6 +1,6 @@
 import {NumericTextBox} from '@syncfusion/ej2-inputs';
 import {FloatLabelType} from '@syncfusion/ej2-inputs';
-import {IWidgetCommon} from "../common/common";
+import {IWidgetCommon} from '../common/common';
 
 import {CheckUserPermissionOnControl} from 'app/shared/utils/permission';
 

@@ -2,20 +2,39 @@ import './container-page.scss';
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {Redirect, RouteComponentProps} from "react-router";
-import {IRootState} from "app/shared/reducer";
-import AlbumPanel, {IAlbumDetail} from "app/component/imgur-gallery/album/album-panel";
+import {Redirect} from 'react-router';
+import {IRootState} from 'app/shared/reducer';
+import {AlbumPanel, IAlbumDetail} from "app/component/imgur-gallery/album/album-panel";
 import HeaderFilterAlbum from "app/component/imgur-gallery/filter-album/header-filter-album";
-import {getImgurGallery} from "app/component/imgur-gallery/react-redux/imgur-action";
-import {ILanguage} from "app/shared/utils/i-language";
+import {ILanguage} from 'app/shared/utils/i-language';
+import InfiniteScroll from 'react-infinite-scroller';
+import {translate} from 'react-jhipster';
 
-interface IProps extends StateProps, DispatchProps, RouteComponentProps<{}> {
+interface IProps extends StateProps, DispatchProps {
 
 }
 
-class ContainerPage extends React.Component<IProps> implements ILanguage {
+interface IState {
+  tracks?: IAlbumDetail[];
+  hasMoreItems?: boolean;
+}
+
+
+class ContainerPage extends React.Component<IProps, IState> implements ILanguage {
   private filterInfo: any;
   private data = [] as IAlbumDetail[];
+
+
+
+  loadItems(e) {
+    const end = (e * 10) - 1;
+    if (end < this.data.length) {
+      const start = e === 1 ? 0 : (e - 1) * 10;
+      this.data.slice(start, end).forEach(it => this.state.tracks.push(it));
+      setTimeout(() => this.forceUpdate(), 1500);
+    }
+  }
+
 
   setLanguage(): void {
     throw new Error("Method not implemented.");
@@ -23,39 +42,42 @@ class ContainerPage extends React.Component<IProps> implements ILanguage {
 
   constructor(props) {
     super(props);
-    // this.state = {galleryState: false};
+    this.state = {
+      tracks: [],
+      hasMoreItems: true
+    };
   }
+
 
   componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<{}>, snapshot?: any): void {
     const galleryList = this.props.galleryReduxState.galleryList;
-    if (galleryList !== prevProps.galleryReduxState.galleryList && galleryList.status == 200) {
-      this.props.mainOperations.toastAction.showToast('success');
+    if (galleryList !== prevProps.galleryReduxState.galleryList && galleryList.status === 200) {
+      this.props.mainOperations.toastAction.showToast(translate('gallery.filter.succeed'));
       const getFirstImageInfo = (it) => {
         if (it.images.length > 0)
           return it.images[0];
-        return null;
+        return it;
       };
       this.data = galleryList.data
         .filter(f => f.images !== undefined)
         .map(it => {
-          let firstImageInfo = getFirstImageInfo(it);
+          const firstImageInfo = getFirstImageInfo(it);
           return {
             imageWidth: firstImageInfo.width,
             imageHeight: firstImageInfo.height,
             info: {
-              description: firstImageInfo.title,
-              downVotes: firstImageInfo.downs,
-              score: firstImageInfo.points,
+              description: firstImageInfo.description,
+              downVotes: it.downs,
+              score: it.score,
               title: it.title,
-              upVotes: firstImageInfo.ups
+              upVotes: it.ups
             },
-            src: firstImageInfo.link,
-            key: it.id
+            linkUri: firstImageInfo.link,
+            key: it.id,
+            type: firstImageInfo.type
           }
         });
       this.forceUpdate();
-    } else {
-
     }
   }
 
@@ -63,19 +85,30 @@ class ContainerPage extends React.Component<IProps> implements ILanguage {
     if (!this.props.authentication.isAuthenticated) {
       return <Redirect to="/"/>;
     }
-    const albumElements = () => {
-      return this.data.map(it => <AlbumPanel delayTime={500} albumDetail={it}/>);
-    };
+    const items = [];
+    this.state.tracks.map((track, i) => {
+      items.push(<AlbumPanel albumDetail={track} key={i}/>)
+    });
     return (
       <div className="gallery-container">
         <div className="">
           <HeaderFilterAlbum albumDetail={this.filterInfo}/>
         </div>
-        <div className="gallery-body">
-          <div className="gallery">
-            {albumElements()}
-          </div>
-        </div>
+        {(this.data.length > 0) ?
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={this.loadItems.bind(this)}
+            hasMore={this.state.hasMoreItems}
+            loader={<div className="app-loading" key={0}><div className="loading-spinner"/></div>}
+            useWindow={false}
+            getScrollParent={() => document.getElementById('iScroll')}
+          >
+            <div className="gallery-body">
+              <div className="gallery">
+                {items}
+              </div>
+            </div>
+          </InfiniteScroll> : ''}
       </div>
     );
   }
@@ -89,7 +122,9 @@ const mapStateToProps = ({galleryReduxState, authentication, mainOperations}: IR
 });
 
 const mapDispatchToProps = {
-  getImgurGallery
+  tracks: [],
+  hasMoreItems: true,
+  nextHref: null
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
