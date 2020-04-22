@@ -23,7 +23,7 @@ interface IState {
 class ContainerPage extends React.Component<IProps, IState> implements ILanguage {
   private filterInfo: any;
   private data = [] as IAlbumDetail[];
-
+  private iScroll: any;
 
 
   loadItems(e) {
@@ -58,6 +58,10 @@ class ContainerPage extends React.Component<IProps, IState> implements ILanguage
           return it.images[0];
         return it;
       };
+      if (this.iScroll) {
+        this.iScroll.pageLoaded = 0;
+        document.getElementsByClassName('gallery')[0].innerHTML = ''
+      }
       this.data = galleryList.data
         .filter(f => f.images !== undefined)
         .map(it => {
@@ -96,10 +100,15 @@ class ContainerPage extends React.Component<IProps, IState> implements ILanguage
         </div>
         {(this.data.length > 0) ?
           <InfiniteScroll
+            ref={(scroll) => {
+              this.iScroll = scroll;
+            }}
             pageStart={0}
             loadMore={this.loadItems.bind(this)}
             hasMore={this.state.hasMoreItems}
-            loader={<div className="app-loading" key={0}><div className="loading-spinner"/></div>}
+            loader={<div className="app-loading" key={0}>
+              <div className="loading-spinner"/>
+            </div>}
             useWindow={false}
             getScrollParent={() => document.getElementById('iScroll')}
           >
