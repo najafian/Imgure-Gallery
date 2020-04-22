@@ -10,8 +10,6 @@ import ContainerPage from "app/component/imgur-gallery/container/container-page"
 import PageNotFound from "app/component/errors/page-not-found";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@syncfusion/ej2/material.css';
-import '../contents/styles/index.css';
-import {CustomWidgetDropDownElement} from "app/shared/widgets/dropDownBox/CustomWidgetDropDownElement";
 
 const store = initStore();
 registerLocale(store);
