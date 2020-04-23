@@ -7,6 +7,7 @@ import {CustomWidgetButton} from 'app/shared/widgets/button/CustomWidgetButton';
 import {CustomWidgetButtonElement} from 'app/shared/widgets/button/CustomWidgetButtonElement';
 import {translate} from 'react-jhipster';
 import AlbumViewWindow, {IAlbumView} from 'app/component/imgur-gallery/album/view/album-view-window';
+import {formLanguage} from "app/shared/reducer/locale";
 
 
 export interface IAlbumDetail {
@@ -19,7 +20,8 @@ export interface IAlbumDetail {
 }
 
 interface IProps {
-  albumDetail: IAlbumDetail
+  albumDetail: IAlbumDetail;
+  imagePosition: string;
 }
 
 export class AlbumPanel extends React.Component<IProps, {}> implements ILanguage {
@@ -41,6 +43,7 @@ export class AlbumPanel extends React.Component<IProps, {}> implements ILanguage
   }
 
   componentDidMount(): void {
+    formLanguage.push(this);
     this.iButtonView.getWidget().setLabel(translate('gallery.album.view'));
     this.iButtonView.getWidget().onClick(() => {
       this.viewWindow.show({
@@ -88,7 +91,7 @@ export class AlbumPanel extends React.Component<IProps, {}> implements ILanguage
     const classStyle = this.makeWaterfall(height, fixHeightBox, 'album item h2 ');
     return (
       <div className={classStyle}>
-        <div className="image-bottom album-container-div">
+        <div className={this.props.imagePosition + ' album-container-div'}>
           <div className="album-section descriptionPartClass">{image.info.title}</div>
           <div className="album-section imageThumbnailClass" id={this.imageContainerID}>
             {album()}

@@ -5,10 +5,11 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router';
 import {IRootState} from 'app/shared/reducer';
 import {AlbumPanel, IAlbumDetail} from "app/component/imgur-gallery/album/album-panel";
-import HeaderFilterAlbum from "app/component/imgur-gallery/filter-album/header-filter-album";
+import HeaderFilterAlbum, {IAlbumFilter} from "app/component/imgur-gallery/filter-album/header-filter-album";
 import {ILanguage} from 'app/shared/utils/i-language';
 import InfiniteScroll from 'react-infinite-scroller';
 import {translate} from 'react-jhipster';
+import {formLanguage} from "app/shared/reducer/locale";
 
 interface IProps extends StateProps, DispatchProps {
 
@@ -21,9 +22,10 @@ interface IState {
 
 
 class ContainerPage extends React.Component<IProps, IState> implements ILanguage {
-  private filterInfo: any;
+  private filterInfo: IAlbumFilter = {};
   private data = [] as IAlbumDetail[];
   private iScroll: any;
+  private imagePositionClass: string;
 
 
   loadItems(e) {
@@ -37,7 +39,6 @@ class ContainerPage extends React.Component<IProps, IState> implements ILanguage
 
 
   setLanguage(): void {
-    throw new Error("Method not implemented.");
   }
 
   constructor(props) {
@@ -46,6 +47,12 @@ class ContainerPage extends React.Component<IProps, IState> implements ILanguage
       tracks: [],
       hasMoreItems: true
     };
+    formLanguage.push(this);
+    this.filterInfo.setAlbumLabelPosition = (imagePositionClass => {
+      this.imagePositionClass = imagePositionClass;
+      this.forceUpdate();
+    });
+    this.imagePositionClass = 'image-bottom';
   }
 
 
@@ -91,7 +98,7 @@ class ContainerPage extends React.Component<IProps, IState> implements ILanguage
     }
     const items = [];
     this.state.tracks.map((track, i) => {
-      items.push(<AlbumPanel albumDetail={track} key={i}/>)
+      items.push(<AlbumPanel imagePosition={this.imagePositionClass} albumDetail={track} key={i}/>)
     });
     return (
       <div className="gallery-container">

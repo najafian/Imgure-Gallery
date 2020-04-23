@@ -43,7 +43,7 @@ class LoginPage extends React.Component<IProps> implements ILanguage {
 
   componentDidUpdate(prevProps: Readonly<StateProps>, prevState: Readonly<DispatchProps>, snapshot?: any): void {
     if (this.props.locale !== prevProps.locale) {
-      console.log(translate('login.title'))
+      // this.setLanguage()
     }
   }
 
@@ -78,7 +78,7 @@ class LoginPage extends React.Component<IProps> implements ILanguage {
                                         widgetProp={this.iTextBoxPassword}/>
             </div>
           </div>
-          <label className="login-label-for-demo">-For entering to gallery website type: demo/demo</label>
+          <label className="login-label-for-demo"><Translate contentKey="login.form.demo"/>demo/demo</label>
           <div className="col-md-12 login-button">
             <CustomWidgetButtonElement width={'120px'} widgetProp={this.iButtonSubmit}/>
           </div>
@@ -88,6 +88,7 @@ class LoginPage extends React.Component<IProps> implements ILanguage {
   }
 
   setLanguage(): void {
+    this.iButtonSubmit.getWidget().setLabel(translate('login.form.button'))
   }
 }
 

@@ -23,7 +23,7 @@ import {formLanguage} from "app/shared/reducer/locale";
 import {CustomLoadingBar} from "app/shared/widgets/loading/custom-loadingBar";
 
 export interface IAlbumFilter {
-  setAlbumLabelPosition?(isTop: boolean): void;
+  setAlbumLabelPosition?(imagePositionClass: string): void;
 }
 
 interface IProps extends StateProps, DispatchProps {
@@ -128,13 +128,15 @@ export class HeaderFilterAlbum extends React.Component<IProps, {}> implements IL
     const iCheckPosition = this.iCheckBoxDescriptionPosition;
     iCheckPosition.getWidget().setDisability(true);
     iCheckPosition.getWidget().setChange((e) => {
-      const getAlbumElement = (newClassName) => {
-        const elements = document.getElementsByClassName('album-container-div');
-        for (let i = 0; i < elements.length; i++) {
-          elements[i].className = newClassName + ' album-container-div';
-        }
-      };
-      getAlbumElement(e.checked ? 'image-top' : 'image-bottom');
+
+      // const getAlbumElement = (newClassName) => {
+      //   const elements = document.getElementsByClassName('album-container-div');
+      //   for (let i = 0; i < elements.length; i++) {
+      //     elements[i].className = newClassName + ' album-container-div';
+      //   }
+      // };
+        this.props.albumDetail.setAlbumLabelPosition(e.checked ? 'image-top' : 'image-bottom');
+      // getAlbumElement(e.checked ? 'image-top' : 'image-bottom');
     });
     const pageWidget = this.iInputNumberPageNo.getWidget();
     pageWidget.setMinValue(1);
