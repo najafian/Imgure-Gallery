@@ -1,7 +1,7 @@
 import React from 'react';
-import UniqueID from "../../../shared/utils/uniqueKey";
-import {CustomWidgetCommon} from "../common/common";
-import {CustomWidgetDropDown} from "./CustomWidgetDropDown";
+import UniqueID from '../../../shared/utils/uniqueKey';
+import {CustomWidgetCommon} from '../common/common';
+import {CustomWidgetDropDown} from './CustomWidgetDropDown';
 
 export class CustomWidgetDropDownElement extends CustomWidgetCommon<CustomWidgetDropDown> {
   combo: CustomWidgetDropDown;
@@ -19,7 +19,7 @@ export class CustomWidgetDropDownElement extends CustomWidgetCommon<CustomWidget
     this.widget.createWidget(this.widgetID);
   }
 
-  render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+  render(): React.ReactElement | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
     return (
       <div id={this.widgetPanelID} style={{ width: this.props.width, height: this.height, display: 'flex', fontSize: this.fontSize }}>
         <div style={{ padding: '0 7px 0' }}>

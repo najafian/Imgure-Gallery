@@ -16,7 +16,7 @@
     <description>Demo project for Spring Boot</description>
     <packaging>jar</packaging>
     <properties>
-        <java.version>12</java.version>
+        <java.version>1.8</java.version>
         <maven.version>3.3.9</maven.version>
         <node.version>v12.16.1</node.version>
         <npm.version>6.14.2</npm.version>
@@ -393,7 +393,7 @@
                         </dependency>
                     </dependencies>
                     <configuration>
-                        <configLocation>checkstyle.xml</configLocation>
+<!--                        <configLocation>checkstyle.xml</configLocation>-->
                         <includes>pom.xml,README.md</includes>
                         <excludes>.git/**/*,target/**/*,node_modules/**/*,node/**/*</excludes>
                         <sourceDirectories>./</sourceDirectories>
@@ -424,7 +424,6 @@
                                 <artifactId>mapstruct-processor</artifactId>
                                 <version>${mapstruct.version}</version>
                             </path>
-                            <!-- jhipster-needle-maven-add-annotation-processor -->
                         </annotationProcessorPaths>
                     </configuration>
                 </plugin>
@@ -764,7 +763,6 @@
                     </configuration>
 
                 </plugin>
-                <!-- jhipster-needle-maven-add-plugin-management -->
             </plugins>
         </pluginManagement>
     </build>
@@ -1036,6 +1034,5 @@
                 </pluginManagement>
             </build>
         </profile>
-        <!-- jhipster-needle-maven-add-profile -->
     </profiles>
 </project>

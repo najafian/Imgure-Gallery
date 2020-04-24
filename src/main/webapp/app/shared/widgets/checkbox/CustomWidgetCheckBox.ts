@@ -1,7 +1,8 @@
-import {IWidgetCommon} from "../common/common";
+import {IWidgetCommon} from '../common/common';
 import {CheckBox, ChangeEventArgs} from '@syncfusion/ej2-buttons';
 import {EmitType} from '@syncfusion/ej2-base';
 import {CheckUserPermissionOnControl} from 'app/shared/utils/permission';
+import {FloatLabelType} from '@syncfusion/ej2-inputs';
 
 export class CustomWidgetCheckBox implements IWidgetCommon<CheckBox> {
   checkBox: CheckBox;
@@ -22,8 +23,9 @@ export class CustomWidgetCheckBox implements IWidgetCommon<CheckBox> {
   }
 
   setVisibility(disable: boolean) {
-    this.checkBox.element.style.display = disable?'block':'none';
+    this.checkBox.element.style.display = disable ? 'block' : 'none';
   }
+
   setDisability(disable: boolean) {
     this.checkBox.disabled = disable;
   }
@@ -55,7 +57,7 @@ export class CustomWidgetCheckBox implements IWidgetCommon<CheckBox> {
     this.checkBox.change = change;
   }
 
-  ischecked() {
+  isChecked() {
     return this.checkBox.checked;
   }
 
@@ -95,5 +97,9 @@ export class CustomWidgetCheckBox implements IWidgetCommon<CheckBox> {
 
   setPlaceHolder(placeholder: string) {
     this.checkBox.label = placeholder;
+  }
+
+  setFloatLabelType(floatLabelType: FloatLabelType): void {
+
   }
 }

@@ -5,7 +5,8 @@
       "password": "Password",
       "username": "Username",
       "rememberme": "Remember me",
-      "button": "Sign in"
+      "button": "Sign in",
+      "demo": "For entering to gallery website type:"
     },
       "welcome": "You are welcome to our Imgur Gallery!"
   }

@@ -18,12 +18,12 @@ import {
   filterSectionDatasource,
   filterSortDatasource,
   filterWindowDatasource
-} from "app/component/imgur-gallery/model/gallery-data-models";
-import {formLanguage} from "app/shared/reducer/locale";
-import {CustomLoadingBar} from "app/shared/widgets/loading/custom-loadingBar";
+} from 'app/component/imgur-gallery/model/gallery-data-models';
+import {formLanguage} from 'app/shared/reducer/locale';
+import {CustomLoadingBar} from 'app/shared/widgets/loading/custom-loadingBar';
 
 export interface IAlbumFilter {
-  setAlbumLabelPosition?(isTop: boolean): void;
+  setAlbumLabelPosition?(imagePositionClass: string): void;
 }
 
 interface IProps extends StateProps, DispatchProps {
@@ -70,7 +70,7 @@ export class HeaderFilterAlbum extends React.Component<IProps, {}> implements IL
           <CustomWidgetNumberElement widgetProp={this.iInputNumberPageNo}/>
           <div style={{display: 'none'}}><CustomWidgetCheckBoxElement widgetProp={this.iCheckBoxShowAlbum}/></div>
         </div>
-        <div style={{textAlign: 'center', padding: '25px 0'}} className="item h2 v3">
+        <div style={{textAlign: 'center', padding: '25px 0'}} className="album-item h2 v3">
           <CustomWidgetButtonElement widgetProp={this.iButtonSearch}/>
         </div>
         <CustomWidgetCheckBoxElement width={'100%'} widgetProp={this.iCheckBoxDescriptionPosition}/>
@@ -86,20 +86,21 @@ export class HeaderFilterAlbum extends React.Component<IProps, {}> implements IL
   }
 
   setLanguage(): void {
-    const setLabelWithDirection = (widget: any, i18NLabel) => {
-      widget.setFloatLabelType('Auto');
+    const setTranslation = (widget: any, i18NLabel) => {
       widget.setLabel(translate('gallery.filter.' + i18NLabel));
-      // widget.setIndex(0);
+      if (widget.setFloatLabelType !== undefined) {
+        widget.setFloatLabelType('Auto');
+      }
     };
-    setLabelWithDirection(this.iDropDownSection.getWidget(), 'section');
-    setLabelWithDirection(this.iDropDownSort.getWidget(), 'sort');
-    setLabelWithDirection(this.iDropDownWindow.getWidget(), 'window');
-    setLabelWithDirection(this.iInputNumberPageNo.getWidget(), 'page');
-    this.iCheckBoxDescriptionPosition.getWidget().setLabel(translate('gallery.filter.descriptionPosition'));
-    this.iCheckBoxShowViral.getWidget().setLabel(translate('gallery.filter.showViral'));
-    this.iCheckBoxMature.getWidget().setLabel(translate('gallery.filter.mature'));
-    this.iCheckBoxShowAlbum.getWidget().setLabel(translate('gallery.filter.window'));
-    this.iButtonSearch.getWidget().setLabel(translate('gallery.filter.search'));
+    setTranslation(this.iDropDownSection.getWidget(), 'section');
+    setTranslation(this.iDropDownSort.getWidget(), 'sort');
+    setTranslation(this.iDropDownWindow.getWidget(), 'window');
+    setTranslation(this.iInputNumberPageNo.getWidget(), 'page');
+    setTranslation(this.iCheckBoxDescriptionPosition.getWidget(), 'descriptionPosition');
+    setTranslation(this.iCheckBoxShowViral.getWidget(),'showViral');
+    setTranslation(this.iCheckBoxMature.getWidget(),'mature');
+    setTranslation(this.iCheckBoxShowAlbum.getWidget(),'window');
+    setTranslation(this.iButtonSearch.getWidget(),'search');
   }
 
   private makeParams(): string {
@@ -107,8 +108,8 @@ export class HeaderFilterAlbum extends React.Component<IProps, {}> implements IL
     const sort = this.iDropDownSort.getWidget().getValue();
     const window = this.iDropDownWindow.getWidget().getValue();
     const page = this.iInputNumberPageNo.getWidget().getValue();
-    const showViral = this.iCheckBoxMature.getWidget().ischecked();
-    const showMature = this.iCheckBoxMature.getWidget().ischecked();
+    const showViral = this.iCheckBoxMature.getWidget().isChecked();
+    const showMature = this.iCheckBoxMature.getWidget().isChecked();
     return `${section}/${sort}/${window}/${page}?showViral=${showViral}&mature=${showMature}`;
   }
 
@@ -128,13 +129,7 @@ export class HeaderFilterAlbum extends React.Component<IProps, {}> implements IL
     const iCheckPosition = this.iCheckBoxDescriptionPosition;
     iCheckPosition.getWidget().setDisability(true);
     iCheckPosition.getWidget().setChange((e) => {
-      const getAlbumElement = (newClassName) => {
-        const elements = document.getElementsByClassName('album-container-div');
-        for (let i = 0; i < elements.length; i++) {
-          elements[i].className = newClassName + ' album-container-div';
-        }
-      };
-      getAlbumElement(e.checked ? 'image-top' : 'image-bottom');
+      this.props.albumDetail.setAlbumLabelPosition(e.checked ? 'image-top' : 'image-bottom');
     });
     const pageWidget = this.iInputNumberPageNo.getWidget();
     pageWidget.setMinValue(1);

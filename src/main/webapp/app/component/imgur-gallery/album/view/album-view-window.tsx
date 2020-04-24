@@ -9,6 +9,8 @@ import {
 import {IRootState} from 'app/shared/reducer';
 import {IAlbumDetail} from "app/component/imgur-gallery/album/album-panel";
 import UniqueID from "app/shared/utils/uniqueKey";
+import {formLanguage} from "app/shared/reducer/locale";
+import {ILanguage} from "app/shared/utils/i-language";
 
 
 export interface IAlbumViewWindowProps extends StateProps, DispatchProps {
@@ -21,7 +23,8 @@ export interface IAlbumView {
   details?: IAlbumDetail;
 }
 
-class AlbumViewWindow extends React.Component<IAlbumViewWindowProps> implements IWindowAction {
+class AlbumViewWindow extends React.Component<IAlbumViewWindowProps> implements IWindowAction, ILanguage {
+
   private windowAlbumWidget: IWindowWidget = {};
   private viewContainerID: string = UniqueID();
   albumDetail: IAlbumView;
@@ -31,6 +34,7 @@ class AlbumViewWindow extends React.Component<IAlbumViewWindowProps> implements 
   }
 
   componentDidMount(): void {
+    formLanguage.push(this);
     this.props.widget.show = (data: IAlbumView) => {
       this.showWindow(data);
     };
@@ -49,7 +53,11 @@ class AlbumViewWindow extends React.Component<IAlbumViewWindowProps> implements 
     return false;
   }
 
+  setLanguage(): void {
+  }
+
   render(): React.ReactElement | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+
     const getAlbumInfo = (value: string) => {
       if (this.albumDetail !== undefined) {
         const info = this.albumDetail.details.info;
@@ -66,12 +74,13 @@ class AlbumViewWindow extends React.Component<IAlbumViewWindowProps> implements 
         }
       }
     };
+
     return (
       <CustomWidgetWindowElement width={400} height={365} settleElementID={this.props.rootElementID}
                                  windowWidget={this.windowAlbumWidget}>
-        <div className="album-window" >
+        <div className="album-window">
           <div className="album-window-image-part" id={this.viewContainerID}/>
-          <div className="album-window-detail-part" >
+          <div className="album-window-detail-part">
             <div className="row">
               <div className="col-md-2"/>
               <div className="col-md-3">
@@ -101,7 +110,6 @@ class AlbumViewWindow extends React.Component<IAlbumViewWindowProps> implements 
               </div>
             </div>
           </div>
-
         </div>
       </CustomWidgetWindowElement>
     );

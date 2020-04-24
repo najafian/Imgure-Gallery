@@ -4,7 +4,7 @@ import {CheckUserPermissionOnControl} from 'app/shared/utils/permission';
 import {IWidgetCommon} from '../common/common';
 
 export class CustomWidgetToast implements IWidgetCommon<Toast> {
-    toast: Toast;
+    toast: any;
     permissionID = true;
 
     applyPermission(elementPermissionID: string, userPermissions: string[]): void {
@@ -57,9 +57,6 @@ export class CustomWidgetToast implements IWidgetCommon<Toast> {
         return this.toast;
     }
 
-    getElement() {
-        return this.toast.element;
-    }
 
     OnClick(onclick: ((this: GlobalEventHandlers, ev: MouseEvent) => any) | null) {
         this.toast.element.onclick = onclick;

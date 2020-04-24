@@ -23,13 +23,6 @@ interface IWidgetLabel {
     setLabel(label: string):void;
 }
 
-export enum LabelPosition {
-    Left,
-    Right,
-    Top,
-    None
-}
-
 export interface IWidgetOps<T> {
    getWidget?(): T;
 }

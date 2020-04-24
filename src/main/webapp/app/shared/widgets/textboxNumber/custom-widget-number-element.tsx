@@ -1,6 +1,6 @@
 import React from 'react';
-import {CustomWidgetCommon} from "../common/common";
-import {CustomWidgetInputNumber} from "app/shared/widgets/textboxNumber/custom-widget-number";
+import {CustomWidgetCommon} from '../common/common';
+import {CustomWidgetInputNumber} from 'app/shared/widgets/textboxNumber/custom-widget-number';
 
 export class CustomWidgetNumberElement extends CustomWidgetCommon<CustomWidgetInputNumber> {
   widgetInput: CustomWidgetInputNumber;

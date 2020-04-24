@@ -15,6 +15,9 @@
       "view": "show window",
       "description": "Description: ",
       "title": "title :"
+    },
+    "home": {
+      "footer": "This is Demo-Project By Mehdi Najafian"
     }
   }
 }

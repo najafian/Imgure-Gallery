@@ -9,16 +9,16 @@ export const ACTION_TYPES = {
     RESET: ':gallery/RESET'
 };
 
-export const initialState = {
+export const initGalleryState = {
     loading: false,
     errorMessage: null,
     galleryList: {data: [] , status: 0, success: false}
 };
 
-export type GalleryReduxState = Readonly<typeof initialState>;
+export type GalleryReduxState = Readonly<typeof initGalleryState>;
 
 // Reducer
-export default (state: GalleryReduxState = initialState, action): GalleryReduxState => {
+export default (state: GalleryReduxState = initGalleryState, action): GalleryReduxState => {
     switch (action.type) {
         case REQUEST(ACTION_TYPES.GALLERY_LIST):
             return {
@@ -40,7 +40,7 @@ export default (state: GalleryReduxState = initialState, action): GalleryReduxSt
             };
         case ACTION_TYPES.RESET:
             return {
-                ...initialState
+                ...initGalleryState
             };
         default:
             return state;

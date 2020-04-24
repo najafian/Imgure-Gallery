@@ -1,6 +1,6 @@
 import React from 'react';
-import {CustomWidgetCommon} from "../common/common";
-import {CustomWidgetInput} from "./CustomWidgetInput";
+import {CustomWidgetCommon} from '../common/common';
+import {CustomWidgetInput} from './CustomWidgetInput';
 
 export class CustomWidgetInputElement extends CustomWidgetCommon<CustomWidgetInput> {
     widgetInput: CustomWidgetInput;

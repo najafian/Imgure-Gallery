@@ -1,6 +1,7 @@
 .login-label-style {
   font-size: 12px;
   margin-top: 8px;
+  width: 110px;
 }
 
 .login-page-form {
@@ -23,4 +24,15 @@
   margin: 0 auto;
   height: 50px;
 
+}
+
+.login-label-for-demo {
+  font-size: 13px;
+  width: 100%;
+  padding-left: 30px;
+}
+
+.login-button {
+  direction: rtl;
+  padding: 15px;
 }

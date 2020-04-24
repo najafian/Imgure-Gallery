@@ -1,7 +1,7 @@
 //
 //@media (max-width: 700px) {
 //  .container {
-//    grid-template-areas: "content content content" "sidebar-1 sidebar-1 sidebar-2";
+//    grid-template-areas: "imageThumbnail" "descriptionPart";
 //
 //  }
 //}
@@ -26,13 +26,13 @@
   grid-auto-rows: calc(100% - 50px);
 }
 
-.imageThumbnailClass {
+.image-thumbnail-album {
   position: relative;
   grid-area: imageThumbnail;
   //grid-row: span 4;
 }
 
-.descriptionPartClass {
+.image-description-part-album {
   grid-area: descriptionPart;
   background: linear-gradient(0deg, #f36082 0%, #f1e6f0 100%);
   opacity: 0.7;
@@ -51,12 +51,8 @@ img {
   max-width: 185px;
 }
 
-
-
-
-
 /* Child Text Container */
-.imageThumbnailClass div{
+.image-thumbnail-album div{
   position: absolute;
   top: 20px;
   left: 0;
@@ -71,11 +67,11 @@ img {
 }
 
 /* Hover on Parent Container */
-.imageThumbnailClass div:hover{
+.image-thumbnail-album div:hover{
   cursor: pointer;
 }
 
-.imageThumbnailClass:hover div{
+.image-thumbnail-album:hover div{
   width: 150px;
   padding: 8px 15px;
   display: block;

@@ -1,7 +1,7 @@
 import React from 'react';
-import {CustomWidgetCommon} from "../common/common";
-import {CustomWidgetButton} from "./CustomWidgetButton";
-import UniqueID from "../../utils/uniqueKey";
+import {CustomWidgetCommon} from '../common/common';
+import {CustomWidgetButton} from './CustomWidgetButton';
+import UniqueID from '../../utils/uniqueKey';
 
 
 export class CustomWidgetButtonElement extends CustomWidgetCommon<CustomWidgetButton> {

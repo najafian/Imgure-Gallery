@@ -5,15 +5,18 @@
       "page": "sayfa",
       "window": "pencere",
       "sort": "çeşit",
-      "showViral": "Show Viral",
+      "showViral": "Viral Göster",
       "descriptionPosition": "görüntü açıklamasını altta göster",
       "mature": "mature",
       "search": "aramak Imgur.com",
       "succeed": "Spring-Boot'dan doğru bir şekilde getirilen albümler!"
+    },
+    "album": {
+      "view": "pencere",
+      "description": "Açıklama :"
+    },
+    "home": {
+      "footer": "Bu, Mehdi Najafian'ın bir Demo Projesi"
     }
-  },
-  "album": {
-    "view": "pencere göster",
-    "description": "Açıklama :"
   }
 }

@@ -6,7 +6,7 @@ class PageNotFound extends React.Component {
   render() {
     return (
       <div className="col-md-12">
-        <h3 className="page-not-found" style={{textAlign: 'center', color: 'aliceblue'}}>The page does not exist.</h3>
+        <h3 className="page-not-found" >The page does not exist.</h3>
       </div>
     );
   }

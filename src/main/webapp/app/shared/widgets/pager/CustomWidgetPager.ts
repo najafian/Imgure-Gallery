@@ -1,8 +1,8 @@
 import {Pager} from '@syncfusion/ej2-grids'
 
-import {CheckUserPermissionOnControl} from "../../../shared/utils/permission";
-import {IWidgetCommon} from "../common/common";
-import {EmitType} from "@syncfusion/ej2-base";
+import {CheckUserPermissionOnControl} from '../../../shared/utils/permission';
+import {IWidgetCommon} from '../common/common';
+import {EmitType} from '@syncfusion/ej2-base';
 
 export class CustomWidgetPager implements IWidgetCommon<Pager> {
     pager: Pager;

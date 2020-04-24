@@ -2,6 +2,7 @@ import {Button} from '@syncfusion/ej2-buttons';
 
 import {CheckUserPermissionOnControl} from 'app/shared/utils/permission';
 import {IWidgetCommon} from '../common/common';
+import {FloatLabelType} from '@syncfusion/ej2-inputs';
 
 export class CustomWidgetButton implements IWidgetCommon<Button> {
   button: Button;
@@ -105,5 +106,8 @@ export class CustomWidgetButton implements IWidgetCommon<Button> {
 
   setPlaceHolder(placeholder: string) {
     this.placeholder = placeholder;
+  }
+  setFloatLabelType(floatLabelType: FloatLabelType): void {
+
   }
 }

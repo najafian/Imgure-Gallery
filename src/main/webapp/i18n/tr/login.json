@@ -5,7 +5,8 @@
       "password": "Şifre",
       "username": "Kullanıcı adı",
       "rememberme": "Beni Hatırla",
-      "button": "Giriş"
+      "button": "Giriş",
+      "demo": "Galeri web sitesi türüne girmek için:"
     },
     "welcome": "İmgur Galerimize Hoşgeldiniz!"
   }

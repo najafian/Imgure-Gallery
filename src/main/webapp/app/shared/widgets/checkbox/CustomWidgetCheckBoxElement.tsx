@@ -1,7 +1,7 @@
 import React from 'react';
-import UniqueID from "../../../shared/utils/uniqueKey";
-import {CustomWidgetCommon} from "../common/common";
-import {CustomWidgetCheckBox} from "./CustomWidgetCheckBox";
+import UniqueID from '../../../shared/utils/uniqueKey';
+import {CustomWidgetCommon} from '../common/common';
+import {CustomWidgetCheckBox} from './CustomWidgetCheckBox';
 
 export class CustomWidgetCheckBoxElement extends CustomWidgetCommon<CustomWidgetCheckBox> {
   combo: CustomWidgetCheckBox;
@@ -18,7 +18,7 @@ export class CustomWidgetCheckBoxElement extends CustomWidgetCommon<CustomWidget
     this.widget.createWidget(this.widgetID);
   }
 
-  render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+  render(): React.ReactElement | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
     return (
       <div style={{ width: this.props.width, height: this.height }} id={this.widgetPanelID}>
         <input style={{width: this.props.width, height: this.height, fontSize: this.fontSize, padding: '0' }} id={this.widgetID}/>

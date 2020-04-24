@@ -5,13 +5,13 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router';
 import {IRootState} from 'app/shared/reducer';
 import {AlbumPanel, IAlbumDetail} from "app/component/imgur-gallery/album/album-panel";
-import HeaderFilterAlbum from "app/component/imgur-gallery/filter-album/header-filter-album";
+import HeaderFilterAlbum, {IAlbumFilter} from "app/component/imgur-gallery/filter-album/header-filter-album";
 import {ILanguage} from 'app/shared/utils/i-language';
 import InfiniteScroll from 'react-infinite-scroller';
 import {translate} from 'react-jhipster';
+import {formLanguage} from "app/shared/reducer/locale";
 
 interface IProps extends StateProps, DispatchProps {
-
 }
 
 interface IState {
@@ -21,10 +21,10 @@ interface IState {
 
 
 class ContainerPage extends React.Component<IProps, IState> implements ILanguage {
-  private filterInfo: any;
+  private filterInfo: IAlbumFilter = {};
   private data = [] as IAlbumDetail[];
-
-
+  private iScroll: any;
+  private imagePositionClass: string;
 
   loadItems(e) {
     const end = (e * 10) - 1;
@@ -35,9 +35,7 @@ class ContainerPage extends React.Component<IProps, IState> implements ILanguage
     }
   }
 
-
   setLanguage(): void {
-    throw new Error("Method not implemented.");
   }
 
   constructor(props) {
@@ -46,39 +44,52 @@ class ContainerPage extends React.Component<IProps, IState> implements ILanguage
       tracks: [],
       hasMoreItems: true
     };
+    formLanguage.push(this);
+    this.filterInfo.setAlbumLabelPosition = (imagePositionClass => {
+      this.imagePositionClass = imagePositionClass;
+      this.forceUpdate();
+    });
+    this.imagePositionClass = 'image-bottom';
   }
-
 
   componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<{}>, snapshot?: any): void {
     const galleryList = this.props.galleryReduxState.galleryList;
     if (galleryList !== prevProps.galleryReduxState.galleryList && galleryList.status === 200) {
       this.props.mainOperations.toastAction.showToast(translate('gallery.filter.succeed'));
-      const getFirstImageInfo = (it) => {
-        if (it.images.length > 0)
-          return it.images[0];
-        return it;
-      };
-      this.data = galleryList.data
-        .filter(f => f.images !== undefined)
-        .map(it => {
-          const firstImageInfo = getFirstImageInfo(it);
-          return {
-            imageWidth: firstImageInfo.width,
-            imageHeight: firstImageInfo.height,
-            info: {
-              description: firstImageInfo.description,
-              downVotes: it.downs,
-              score: it.score,
-              title: it.title,
-              upVotes: it.ups
-            },
-            linkUri: firstImageInfo.link,
-            key: it.id,
-            type: firstImageInfo.type
-          }
-        });
-      this.forceUpdate();
+      if (this.iScroll) {
+        this.iScroll.pageLoaded = 0;
+        document.getElementsByClassName('gallery')[0].innerHTML = ''
+      }
+      this.convertRestDataToAlbumInfo(galleryList);
     }
+  }
+
+  convertRestDataToAlbumInfo(galleryList) {
+    const getFirstImageInfo = (it) => {
+      if (it.images.length > 0)
+        return it.images[0];
+      return it;
+    };
+    this.data = galleryList.data
+      .filter(f => f.images !== undefined)
+      .map(it => {
+        const firstImageInfo = getFirstImageInfo(it);
+        return {
+          imageWidth: firstImageInfo.width,
+          imageHeight: firstImageInfo.height,
+          info: {
+            description: firstImageInfo.description,
+            downVotes: it.downs,
+            score: it.score,
+            title: it.title,
+            upVotes: it.ups
+          },
+          linkUri: firstImageInfo.link,
+          key: it.id,
+          type: firstImageInfo.type
+        }
+      });
+    this.forceUpdate();
   }
 
   render(): React.ReactElement | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
@@ -87,7 +98,7 @@ class ContainerPage extends React.Component<IProps, IState> implements ILanguage
     }
     const items = [];
     this.state.tracks.map((track, i) => {
-      items.push(<AlbumPanel albumDetail={track} key={i}/>)
+      items.push(<AlbumPanel imagePosition={this.imagePositionClass} albumDetail={track} key={i}/>)
     });
     return (
       <div className="gallery-container">
@@ -96,10 +107,15 @@ class ContainerPage extends React.Component<IProps, IState> implements ILanguage
         </div>
         {(this.data.length > 0) ?
           <InfiniteScroll
+            ref={(scroll) => {
+              this.iScroll = scroll;
+            }}
             pageStart={0}
             loadMore={this.loadItems.bind(this)}
             hasMore={this.state.hasMoreItems}
-            loader={<div className="app-loading" key={0}><div className="loading-spinner"/></div>}
+            loader={<div className="app-loading" key={0}>
+              <div className="loading-spinner"/>
+            </div>}
             useWindow={false}
             getScrollParent={() => document.getElementById('iScroll')}
           >
@@ -123,8 +139,7 @@ const mapStateToProps = ({galleryReduxState, authentication, mainOperations}: IR
 
 const mapDispatchToProps = {
   tracks: [],
-  hasMoreItems: true,
-  nextHref: null
+  hasMoreItems: true
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;

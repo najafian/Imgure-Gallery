@@ -8,7 +8,7 @@ interface IProp {
 
 export class CustomLabelPanel extends React.Component<IProp, {}> {
 
-  render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+  render(): React.ReactElement | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
     return (
       <div className="content-center" style={{ width: this.props.width, height: this.props.height }}>
         <div className={('text-fit borderpanel-title')}>

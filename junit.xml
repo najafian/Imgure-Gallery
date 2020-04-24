@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="10" failures="0" time="43.858">
+  <testsuite name="Gallery reducer tests" errors="0" failures="0" skipped="0" timestamp="2020-04-24T05:52:59" time="18.47" tests="4">
+    <testcase classname="Gallery reducer tests Common should return the initial state" name="Gallery reducer tests Common should return the initial state" time="0.002">
+    </testcase>
+    <testcase classname="Gallery reducer tests should reset the state" name="Gallery reducer tests should reset the state" time="0">
+    </testcase>
+    <testcase classname="Successes should fetch all albums" name="Successes should fetch all albums" time="0.001">
+    </testcase>
+    <testcase classname="Actions dispatches Imgur gallery list action" name="Actions dispatches Imgur gallery list action" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="Axios Interceptor" errors="0" failures="0" skipped="0" timestamp="2020-04-24T05:53:19" time="1.205" tests="2">
+    <testcase classname="Axios Interceptor setupAxiosInterceptors onResponseSuccess is called on fulfilled response" name="Axios Interceptor setupAxiosInterceptors onResponseSuccess is called on fulfilled response" time="0">
+    </testcase>
+    <testcase classname="Axios Interceptor setupAxiosInterceptors onResponseError is called on rejected response" name="Axios Interceptor setupAxiosInterceptors onResponseError is called on rejected response" time="0.015">
+    </testcase>
+  </testsuite>
+  <testsuite name="Locale reducer tests" errors="0" failures="0" skipped="0" timestamp="2020-04-24T05:52:59" time="23.473" tests="4">
+    <testcase classname="Locale reducer tests should return the initial state" name="Locale reducer tests should return the initial state" time="0.002">
+    </testcase>
+    <testcase classname="Locale reducer tests should correctly set the first time locale" name="Locale reducer tests should correctly set the first time locale" time="0.001">
+    </testcase>
+    <testcase classname="Locale reducer tests should correctly detect update in current locale state" name="Locale reducer tests should correctly detect update in current locale state" time="0">
+    </testcase>
+    <testcase classname="Locale reducer tests Locale actions dispatches SET_LOCALE action for default locale" name="Locale reducer tests Locale actions dispatches SET_LOCALE action for default locale" time="0.002">
+    </testcase>
+  </testsuite>
+</testsuites>

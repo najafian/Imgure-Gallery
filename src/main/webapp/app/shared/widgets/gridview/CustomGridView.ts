@@ -37,8 +37,8 @@ import {
 } from '@syncfusion/ej2-grids';
 import {EmitType} from '@syncfusion/ej2-base';
 import {ItemModel} from '@syncfusion/ej2-navigations';
-import {IWidgetCommon} from "../common/common";
-import {CheckUserPermissionOnControl} from "../../utils/permission";
+import {IWidgetCommon} from '../common/common';
+import {CheckUserPermissionOnControl} from '../../utils/permission';
 
 Grid.Inject(ContextMenu, Resize, Filter, Page, Selection, Toolbar, CommandColumn, Sort, DetailRow, ExcelExport, PdfExport, Group, Edit);
 
@@ -46,11 +46,9 @@ Grid.Inject(ContextMenu, Resize, Filter, Page, Selection, Toolbar, CommandColumn
 export class CustomGridView implements IWidgetCommon<Grid> {
   grid: Grid;
   rowItem: any;
-  isAuthenticated: boolean;
 
   applyPermission(elementPermissionID: string, userPermissions: string[]): void {
     const isAuthenticated: boolean = CheckUserPermissionOnControl(elementPermissionID, userPermissions);
-    this.isAuthenticated = isAuthenticated;
   }
 
   constructor() {

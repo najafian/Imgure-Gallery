@@ -1,9 +1,10 @@
 import {CustomWidgetToast} from '../widgets/toast/CustomWidgetToast';
 
-const initialState = {
-    toastAction: new CustomWidgetToast()
+const toastAct = new CustomWidgetToast();
+export const initMainState = {
+  toastAction: toastAct
 };
 
-export type MainOperations = Readonly<typeof initialState>;
+export type MainOperations = Readonly<typeof initMainState>;
 
-export default (state: MainOperations = initialState): MainOperations => state
+export default (state: MainOperations = initMainState): MainOperations => state

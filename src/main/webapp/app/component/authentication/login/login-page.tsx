@@ -41,17 +41,15 @@ class LoginPage extends React.Component<IProps> implements ILanguage {
     formLanguage.push(this);
   }
 
-  componentDidUpdate(prevProps: Readonly<StateProps>, prevState: Readonly<DispatchProps>, snapshot?: any): void {
-    if (this.props.locale !== prevProps.locale) {
-      console.log(translate('login.title'))
-    }
-  }
-
   handleLogin = () => {
     const username = this.iTextBoxUseName.getWidget().getValue();
     const password = this.iTextBoxPassword.getWidget().getValue();
     this.props.login({username: username, password: password, rememberMe: false});
   };
+
+  setLanguage(): void {
+    this.iButtonSubmit.getWidget().setLabel(translate('login.form.button'))
+  }
 
   render() {
     if (this.props.authentication.isAuthenticated) {
@@ -59,7 +57,7 @@ class LoginPage extends React.Component<IProps> implements ILanguage {
       return <Redirect to="/gallery"/>;
     }
     return (
-      <div className="login-page-form" style={{height: '180px', width: '323px'}}>
+      <div className="login-page-form" style={{height: '210px', width: '323px'}}>
         <div className="e-dialog e-dlg-header-content">
           <div className="tosan-login-form-header-text">
             <div>{this.headerTitle}</div>
@@ -78,16 +76,13 @@ class LoginPage extends React.Component<IProps> implements ILanguage {
                                         widgetProp={this.iTextBoxPassword}/>
             </div>
           </div>
-          <div id={this.warningElementID}/>
-          <div className="col-md-12" style={{direction: 'rtl'}}>
+          <label className="login-label-for-demo"><Translate contentKey="login.form.demo"/>demo/demo</label>
+          <div className="col-md-12 login-button">
             <CustomWidgetButtonElement width={'120px'} widgetProp={this.iButtonSubmit}/>
           </div>
         </div>
       </div>
     );
-  }
-
-  setLanguage(): void {
   }
 }
 

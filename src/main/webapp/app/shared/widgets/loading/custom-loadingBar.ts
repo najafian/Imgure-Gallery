@@ -10,17 +10,7 @@ export class CustomLoadingBar implements IWidgetCommon<HTMLElement> {
   hideStyle = 'width:0px;height:0px;display:none;';
 
   constructor(element?: string | HTMLElement) {
-    this.bodyElement = document.createElement('div');
-    this.loadingElement = document.createElement('div');
-    this.loadingElement.setAttribute('class', 'loading-spinner');
-    this.loadingElementTitle = document.createElement('div');
-    this.loadingElementTitle.setAttribute('class', 'mobilab-icon');
-    this.subBody = document.createElement('div');
-    this.subBody.setAttribute('style', 'display: table-cell;vertical-align: middle;');
-    this.loadingContainerElement = document.createElement('div');
-    this.loadingContainerElement.appendChild(this.loadingElementTitle);
-    this.loadingContainerElement.appendChild(this.loadingElement);
-
+    this.initLoadingElement();
     this.subBody.appendChild(this.loadingContainerElement);
     this.bodyElement.appendChild(this.subBody);
     if (element !== undefined) {
@@ -32,6 +22,19 @@ export class CustomLoadingBar implements IWidgetCommon<HTMLElement> {
     }
     this.hideLoading();
     this.loadingContainerElement.setAttribute('class', 'app-loading');
+  }
+
+  private initLoadingElement() {
+    this.bodyElement = document.createElement('div');
+    this.loadingElement = document.createElement('div');
+    this.loadingElement.setAttribute('class', 'loading-spinner');
+    this.loadingElementTitle = document.createElement('div');
+    this.loadingElementTitle.setAttribute('class', 'mobilab-icon');
+    this.subBody = document.createElement('div');
+    this.subBody.setAttribute('style', 'display: table-cell;vertical-align: middle;');
+    this.loadingContainerElement = document.createElement('div');
+    this.loadingContainerElement.appendChild(this.loadingElementTitle);
+    this.loadingContainerElement.appendChild(this.loadingElement);
   }
 
   hideLoading() {

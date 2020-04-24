@@ -21,7 +21,7 @@ export class CustomGridViewElement extends CustomWidgetCommon<CustomGridView> {
     this.widget.createWidget(this.widgetID);
   }
 
-  render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+  render(): React.ReactElement | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
     return (
       <div id={this.widgetPanelID} style={this.attrs}>
         <label/>
